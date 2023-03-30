@@ -1,0 +1,45 @@
+import { AssetTransfersCategory, Utils } from 'alchemy-sdk';
+import { constants } from 'ethers';
+import { sortBy } from 'lodash';
+
+import alchemy from '../../lib/alchemy';
+import TransactionsList from '../lib/transactions-list';
+
+const AddressInternal = async ({ address }: { address: string }) => {
+  const category = [
+    AssetTransfersCategory.EXTERNAL,
+    AssetTransfersCategory.INTERNAL,
+    AssetTransfersCategory.ERC20,
+    AssetTransfersCategory.ERC721,
+    AssetTransfersCategory.ERC1155,
+  ];
+  const [transfersFrom, transfersTo] = await Promise.all([
+    alchemy.core.getAssetTransfers({
+      fromAddress: address,
+      category,
+    }),
+    alchemy.core.getAssetTransfers({
+      toAddress: address,
+      category,
+    }),
+  ]);
+  const transfers = [...transfersFrom.transfers, ...transfersTo.transfers];
+  const internalTransfers = transfers.filter(({ category }) => category === 'internal');
+  const internalTxs = internalTransfers.map((transfer) => ({
+    uniqueId: transfer.uniqueId,
+    hash: transfer.hash,
+    blockNumber: Number.parseInt(transfer.blockNum, 16),
+    from: transfer.from,
+    to: transfer.to || constants.AddressZero,
+    value: transfer.value ? Utils.parseEther(transfer.value.toString()).toString() : '0',
+  }));
+  return (
+    <TransactionsList
+      txs={sortBy(internalTxs, 'blockNumber').reverse()}
+      withTimestamp={false}
+      withFee={false}
+    />
+  );
+};
+
+export default AddressInternal;

@@ -1,0 +1,56 @@
+{
+  "name": "etherscanlite",
+  "version": "1.0.0",
+  "description": "EtherscanLite - Simple Block Explorer",
+  "author": "saimeunt",
+  "license": "ISC",
+  "scripts": {
+    "lint": "next lint",
+    "prettier": "prettier --write \"{app,components}/**/*.{ts,tsx}\"",
+    "tsc": "tsc --noEmit",
+    "dev": "next dev",
+    "build": "next build"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.13",
+    "@heroicons/react": "^2.0.16",
+    "@web3modal/ethereum": "^2.2.2",
+    "@web3modal/react": "^2.2.2",
+    "alchemy-sdk": "^2.6.2",
+    "classnames": "^2.3.2",
+    "date-fns": "^2.29.3",
+    "date-fns-tz": "^2.0.0",
+    "ethers": "^5.7.2",
+    "jsdom": "^21.1.1",
+    "lodash": "^4.17.21",
+    "next": "^13.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "usehooks-ts": "^2.9.1",
+    "wagmi": "^0.12.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@types/jsdom": "^21.1.1",
+    "@types/lodash": "^4.14.192",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.31",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.37.0",
+    "eslint-config-next": "^13.2.4",
+    "eslint-config-prettier": "^8.8.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.6",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.0.2"
+  }
+}
