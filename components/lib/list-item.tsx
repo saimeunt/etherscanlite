@@ -13,7 +13,7 @@ const ListItem = ({
   <div
     className={classNames(
       { 'border-t border-gray-200': border },
-      'py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6',
+      'py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5',
     )}
   >
     <dt className="flex text-sm font-medium text-gray-500">{title}:</dt>

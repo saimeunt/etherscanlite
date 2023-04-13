@@ -14,7 +14,7 @@ const Index = async () => {
   const blocks = [latestBlock, ...latestBlocks];
   const blockRewards = await Promise.all(blocks.map((block) => getBlockReward(block)));
   return (
-    <div className="m-4">
+    <main className="m-4">
       <Heading />
       <div className="mt-8 flex">
         <div className="mr-2 flex-1">
@@ -24,7 +24,7 @@ const Index = async () => {
           <LatestTransactions block={latestBlock} />
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

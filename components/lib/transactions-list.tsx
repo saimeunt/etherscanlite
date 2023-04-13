@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Utils } from 'alchemy-sdk';
+import { utils } from 'ethers';
 import { ArrowRightCircleIcon } from '@heroicons/react/24/outline';
 
 import { formatTimestamp, truncateAddress, truncateHash, formatEther } from '../../lib/utils';
@@ -35,7 +35,7 @@ const TransactionsList = ({
   withNFT?: boolean;
 }) => (
   <div className="mt-8 flow-root">
-    <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-300">
@@ -179,12 +179,12 @@ const TransactionsList = ({
                   </td>
                   {!withNFT && (
                     <td className="whitespace-nowrap px-3 py-4 text-sm">
-                      {formatEther(Number(Utils.formatEther(tx.value)), 8)} {withToken ? '' : 'ETH'}
+                      {formatEther(Number(utils.formatEther(tx.value)), 8)} {withToken ? '' : 'ETH'}
                     </td>
                   )}
                   {tx.fee && (
                     <td className="whitespace-nowrap px-3 py-4 text-xs text-gray-500">
-                      {formatEther(Number(Utils.formatEther(tx.fee)), 8)}
+                      {formatEther(Number(utils.formatEther(tx.fee)), 8)}
                     </td>
                   )}
                   {tx.asset && <td className="whitespace-nowrap px-3 py-4 text-sm">{tx.asset}</td>}

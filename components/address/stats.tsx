@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Utils } from 'alchemy-sdk';
+import { utils } from 'ethers';
 
 import { formatTimestamp, truncateHash } from '../../lib/utils';
 
@@ -33,11 +33,11 @@ const Stats = ({
       <div className="font-semibold">Overview</div>
       <dt className="mt-4 text-sm text-gray-500">ETH BALANCE</dt>
       <dd className="mt-1 text-sm tracking-tight text-gray-900">
-        {Utils.formatEther(balance)} ETH
+        {utils.formatEther(balance)} ETH
       </dd>
       <dt className="mt-2 text-sm text-gray-500">ETH VALUE</dt>
       <dd className="mt-1 text-sm tracking-tight text-gray-900">
-        {formatPrice(etherPrice * Number(Utils.formatEther(balance)))}{' '}
+        {formatPrice(etherPrice * Number(utils.formatEther(balance)))}{' '}
         <span className="text-xs">(@ {formatPrice(etherPrice)}/ETH)</span>
       </dd>
     </div>

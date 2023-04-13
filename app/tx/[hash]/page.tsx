@@ -5,6 +5,4 @@ const TransactionPage = ({ params: { hash } }: { params: { hash: string } }) => 
   <Transaction hash={hash} />
 );
 
-export const dynamic = 'force-dynamic';
-
 export default TransactionPage;

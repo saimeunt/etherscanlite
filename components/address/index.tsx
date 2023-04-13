@@ -1,5 +1,5 @@
-import { AssetTransfersCategory, Utils } from 'alchemy-sdk';
-import { constants } from 'ethers';
+import { AssetTransfersCategory } from 'alchemy-sdk';
+import { constants, utils } from 'ethers';
 import { uniqBy, sortBy } from 'lodash';
 
 import alchemy from '../../lib/alchemy';
@@ -33,7 +33,7 @@ const AddressIndex = async ({ address }: { address: string }) => {
     to: transfer.to || constants.AddressZero,
     value: transfer.value
       ? transfer.asset === 'ETH'
-        ? Utils.parseEther(transfer.value.toString()).toString()
+        ? utils.parseEther(transfer.value.toFixed(18).toString()).toString()
         : '0'
       : '0',
   }));

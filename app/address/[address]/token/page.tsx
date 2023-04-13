@@ -5,6 +5,4 @@ const AddressTokenPage = ({ params: { address } }: { params: { address: string }
   <AddressToken address={address} />
 );
 
-export const dynamic = 'force-dynamic';
-
 export default AddressTokenPage;

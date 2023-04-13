@@ -5,6 +5,4 @@ const TransactionsPage = ({ params: { number } }: { params: { number: string } }
   <Transactions number={number} />
 );
 
-export const dynamic = 'force-dynamic';
-
 export default TransactionsPage;

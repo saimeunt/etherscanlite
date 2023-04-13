@@ -1,7 +1,8 @@
-import { BlockWithTransactions, Utils } from 'alchemy-sdk';
+import { BlockWithTransactions } from 'alchemy-sdk';
 import Link from 'next/link';
 import { CubeIcon } from '@heroicons/react/24/outline';
 import { fromUnixTime, formatDistance } from 'date-fns';
+import { utils } from 'ethers';
 
 import { truncateAddress, formatEther } from '../../lib/utils';
 
@@ -13,7 +14,7 @@ const LatestBlocks = ({
   blockRewards: { blockReward: bigint; sumMinerTips: bigint; burnedFee: bigint }[];
 }) => (
   <div className="flow-root">
-    <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
           <table className="min-w-full divide-y divide-gray-300">
@@ -72,7 +73,7 @@ const LatestBlocks = ({
                   </td>
                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                     <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
-                      {formatEther(Number(Utils.formatEther(blockRewards[index].blockReward)), 5)}{' '}
+                      {formatEther(Number(utils.formatEther(blockRewards[index].blockReward)), 5)}{' '}
                       Eth
                     </span>
                   </td>

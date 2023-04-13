@@ -1,7 +1,9 @@
 import { ReactNode } from 'react';
+import { notFound } from 'next/navigation';
 import { uniqBy } from 'lodash';
 import { JSDOM } from 'jsdom';
 import { AssetTransfersCategory } from 'alchemy-sdk';
+import { utils } from 'ethers';
 
 import alchemy from '../../../lib/alchemy';
 import Heading from '../../../components/address/heading';
@@ -12,6 +14,9 @@ const getEtherPrice = async () => {
   const response = await fetch(
     'https://api.coingecko.com/api/v3/coins/markets?ids=ethereum&vs_currency=usd',
   );
+  if (response.status === 429) {
+    return 2000;
+  }
   const responseJson = await response.json();
   const [{ current_price: currentPrice }] = responseJson as [{ current_price: number }];
   return currentPrice;
@@ -32,6 +37,10 @@ const AddressLayout = async ({
   params: { address: string };
   children: ReactNode;
 }) => {
+  const isAddress = utils.isAddress(address);
+  if (!isAddress) {
+    notFound();
+  }
   const category = [
     AssetTransfersCategory.EXTERNAL,
     AssetTransfersCategory.INTERNAL,
@@ -69,7 +78,7 @@ const AddressLayout = async ({
     ['erc721', 'erc1155'].includes(category),
   );
   return (
-    <div className="m-4">
+    <main className="m-4">
       <Heading address={address} />
       <Stats
         address={address}
@@ -89,10 +98,8 @@ const AddressLayout = async ({
         nftTransfersCount={rawNftTransfers.length}
       />
       {children}
-    </div>
+    </main>
   );
 };
-
-export const dynamic = 'force-dynamic';
 
 export default AddressLayout;

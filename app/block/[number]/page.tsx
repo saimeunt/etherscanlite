@@ -5,6 +5,4 @@ const BlockPage = ({ params: { number } }: { params: { number: string } }) => (
   <Block number={Number(number)} />
 );
 
-export const dynamic = 'force-dynamic';
-
 export default BlockPage;

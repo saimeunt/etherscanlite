@@ -1,5 +1,5 @@
-import { AssetTransfersCategory, Utils, NftMetadataBatchToken, NftTokenType } from 'alchemy-sdk';
-import { constants } from 'ethers';
+import { AssetTransfersCategory, NftMetadataBatchToken, NftTokenType } from 'alchemy-sdk';
+import { constants, utils } from 'ethers';
 import { sortBy } from 'lodash';
 
 import alchemy from '../../lib/alchemy';
@@ -47,7 +47,9 @@ const AddressNft = async ({ address }: { address: string }) => {
     blockNumber: Number.parseInt(transfer.blockNum, 16),
     from: transfer.from,
     to: transfer.to || constants.AddressZero,
-    value: transfer.value ? Utils.parseEther(transfer.value.toString()).toString() : '0',
+    value: transfer.value
+      ? utils.parseEther(transfer.value.toFixed(18).toString()).toString()
+      : '0',
     type: transfer.category === 'erc721' ? 'ERC-721' : 'ERC-1155',
     item: {
       title:

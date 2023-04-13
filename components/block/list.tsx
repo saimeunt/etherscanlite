@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Utils, BlockWithTransactions } from 'alchemy-sdk';
+import { BlockWithTransactions } from 'alchemy-sdk';
 import { utils } from 'ethers';
 import { ClockIcon } from '@heroicons/react/24/outline';
 
@@ -59,8 +59,8 @@ const List = ({
           in 12 secs
         </ListItem>
         <ListItem title="Block Reward">
-          {Utils.formatEther(blockReward.blockReward)} ETH (0 +{' '}
-          {Utils.formatEther(blockReward.sumMinerTips)} - {Utils.formatEther(blockReward.burnedFee)}
+          {utils.formatEther(blockReward.blockReward)} ETH (0 +{' '}
+          {utils.formatEther(blockReward.sumMinerTips)} - {utils.formatEther(blockReward.burnedFee)}
           )
         </ListItem>
         <ListItem title="Total Difficulty">{formatBigInt(totalDifficulty)}</ListItem>
@@ -71,12 +71,12 @@ const List = ({
         </ListItem>
         <ListItem title="Gas Limit">{formatBigInt(block.gasLimit.toBigInt())}</ListItem>
         <ListItem title="Base Fee Per Gas">
-          {Utils.formatEther(block.baseFeePerGas || 0)} ETH
+          {utils.formatEther(block.baseFeePerGas || 0)} ETH
           <div className="ml-1 text-gray-500">
-            ({Utils.formatUnits(block.baseFeePerGas || 0, 'gwei')} Gwei)
+            ({utils.formatUnits(block.baseFeePerGas || 0, 'gwei')} Gwei)
           </div>
         </ListItem>
-        <ListItem title="Burnt Fees">🔥 {Utils.formatEther(blockReward.burnedFee)} ETH</ListItem>
+        <ListItem title="Burnt Fees">🔥 {utils.formatEther(blockReward.burnedFee)} ETH</ListItem>
         <ListItem title="Extra Data">
           {utils.parseBytes32String(block.extraData.padEnd(66, '0'))} (Hex: {block.extraData})
         </ListItem>

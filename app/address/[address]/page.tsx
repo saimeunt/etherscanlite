@@ -5,6 +5,4 @@ const AddressIndexPage = ({ params: { address } }: { params: { address: string }
   <AddressIndex address={address} />
 );
 
-export const dynamic = 'force-dynamic';
-
 export default AddressIndexPage;

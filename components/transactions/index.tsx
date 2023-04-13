@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { constants } from 'ethers';
 
 import alchemy from '../../lib/alchemy';
@@ -6,11 +7,14 @@ import TransactionsList from '../lib/transactions-list';
 
 const Transactions = async ({ number }: { number: string }) => {
   const block = await alchemy.core.getBlockWithTransactions(Number(number));
+  if (!block) {
+    notFound();
+  }
   const { receipts } = await alchemy.core.getTransactionReceipts({
     blockHash: block.hash,
   });
   if (!receipts) {
-    return null;
+    notFound();
   }
   const receiptsReversed = receipts.reverse();
   const txs = block.transactions.reverse().map((tx, index) => ({
@@ -27,10 +31,10 @@ const Transactions = async ({ number }: { number: string }) => {
     ).toString(),
   }));
   return (
-    <div className="m-4">
+    <main className="m-4">
       <Heading block={block} />
       <TransactionsList txs={txs} />
-    </div>
+    </main>
   );
 };
 

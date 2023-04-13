@@ -5,6 +5,4 @@ const AddressNftPage = ({ params: { address } }: { params: { address: string } }
   <AddressNft address={address} />
 );
 
-export const dynamic = 'force-dynamic';
-
 export default AddressNftPage;

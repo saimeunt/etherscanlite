@@ -5,7 +5,7 @@ import { truncateAddress } from '../lib/utils';
 const Footer = () => {
   const address = '0x71C7656EC7ab88b098defB751B7401B5f6d8976F';
   return (
-    <div className="mx-4 flex justify-between border-t border-gray-200 py-5">
+    <footer className="mx-4 flex justify-between border-t border-gray-200 py-5">
       <p className="text-xs text-gray-900">EtherscanLite © {new Date().getFullYear()}</p>
       <p className="text-xs text-gray-900">
         Donations:{' '}
@@ -14,7 +14,7 @@ const Footer = () => {
         </Link>{' '}
         ❤️
       </p>
-    </div>
+    </footer>
   );
 };
 

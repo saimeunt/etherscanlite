@@ -5,6 +5,4 @@ const AddressInternalPage = ({ params: { address } }: { params: { address: strin
   <AddressInternal address={address} />
 );
 
-export const dynamic = 'force-dynamic';
-
 export default AddressInternalPage;

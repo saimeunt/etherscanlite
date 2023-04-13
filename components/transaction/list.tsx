@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ClockIcon } from '@heroicons/react/24/outline';
-import { TransactionReceipt, TransactionResponse, Utils, Block } from 'alchemy-sdk';
+import { TransactionReceipt, TransactionResponse, Block } from 'alchemy-sdk';
+import { utils } from 'ethers';
 
 import ListItem from '../lib/list-item';
 import { formatTimestamp } from '../../lib/utils';
@@ -47,15 +48,15 @@ const List = ({
           </Link>
         </ListItem>
         <ListItem title="Value" border>
-          {Utils.formatEther(tx.value)} ETH
+          {utils.formatEther(tx.value)} ETH
         </ListItem>
         <ListItem title="Transaction Fee">
-          {Utils.formatEther(txReceipt.gasUsed.toBigInt() * txReceipt.effectiveGasPrice.toBigInt())}{' '}
+          {utils.formatEther(txReceipt.gasUsed.toBigInt() * txReceipt.effectiveGasPrice.toBigInt())}{' '}
           ETH
         </ListItem>
         <ListItem title="Gas Price">
-          {Utils.formatUnits(tx.gasPrice || 0, 'gwei')} Gwei
-          <div className="ml-1 text-gray-500">({Utils.formatEther(tx.gasPrice || 0)} ETH)</div>
+          {utils.formatUnits(tx.gasPrice || 0, 'gwei')} Gwei
+          <div className="ml-1 text-gray-500">({utils.formatEther(tx.gasPrice || 0)} ETH)</div>
         </ListItem>
       </dl>
     </div>
